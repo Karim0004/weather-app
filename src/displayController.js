@@ -1,5 +1,5 @@
 import Dropdown from '@karim04/dropdown-menu';
-import parseWeather from './parseWeather';
+import { parseWeather, unitHandler } from './parseWeather';
 import windIcon from './assets/wind.svg';
 import tempIcon from './assets/temp.svg';
 import searchIcon from './assets/search.svg';
@@ -18,21 +18,6 @@ const displayController = (function display() {
   const state = document.getElementById('state-main');
   const stateDesc = document.getElementById('state-desc');
   const humidity = document.getElementById('humidity');
-
-  const unitChanger = document.getElementById('unit');
-  const unitChangerLabel = document.querySelector('#unit>span');
-
-  const unitMenu = Dropdown.create(unitChanger);
-  unitMenu.menu.style.top = '';
-  unitMenu.menu.style.bottom = '120%';
-  unitMenu.menu.style.transformOrigin = 'bottom';
-
-  unitMenu.add('Celsius', () => {
-    unitChangerLabel.innerText = '°C';
-  });
-  unitMenu.add('Fahrenheit', () => {
-    unitChangerLabel.innerText = '°F';
-  });
 
   function popup(text) {
     if (alertBox.classList.contains('visible-box')) return;
@@ -77,11 +62,37 @@ const displayController = (function display() {
     displayWeather(weatherObject);
   }
 
+  async function refreshDisplay() {
+    const weatherObject = await parseWeather(city.innerText);
+    displayWeather(weatherObject);
+  }
+
   // binding form submission to get weather data
   submit.onclick = getWeather;
   input.onkeydown = (e) => {
     if (e.key === 'Enter') getWeather();
   };
+
+  const unitChanger = document.getElementById('unit');
+  const unitChangerLabel = document.querySelector('#unit>span');
+
+  const unitMenu = Dropdown.create(unitChanger);
+  unitMenu.menu.style.top = '';
+  unitMenu.menu.style.bottom = '120%';
+  unitMenu.menu.style.transformOrigin = 'bottom';
+
+  unitMenu.add('Celsius', () => {
+    unitChangerLabel.innerText = '°C';
+    unitHandler.set('C');
+    refreshDisplay();
+  });
+  unitMenu.add('Fahrenheit', () => {
+    unitChangerLabel.innerText = '°F';
+    unitHandler.set('F');
+    refreshDisplay();
+  });
+
+  refreshDisplay();
 }());
 
 export default displayController;
