@@ -88,6 +88,7 @@ body {
       font-size: 2.5em;
       font-weight: 500;
     }
+
     .wind, .temperature {
       display: flex;
       flex-direction: column;
@@ -103,7 +104,7 @@ body {
 
       >img {
         width: max-content;
-        filter: invert(0.5);
+        // filter: invert(0.5);
       }
     }
 

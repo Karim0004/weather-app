@@ -4,6 +4,7 @@ import windIcon from './assets/wind.svg';
 import tempIcon from './assets/temp.svg';
 import searchIcon from './assets/search.svg';
 import parseImage from './parseImage';
+import directionIcon from './assets/direction.svg';
 
 const displayController = (function display() {
   document.querySelector('.temperature>img').src = tempIcon;
@@ -20,6 +21,8 @@ const displayController = (function display() {
   const stateDesc = document.getElementById('state-desc');
   const humidity = document.getElementById('humidity');
 
+  deg.src = directionIcon;
+
   function popup(text) {
     if (alertBox.classList.contains('visible-box')) return;
 
@@ -30,7 +33,7 @@ const displayController = (function display() {
     }, 3000);
   }
 
-  const info = document.querySelector('.info');
+  // const info = document.querySelector('.info');
   const content = document.getElementById('content');
   async function updateBackground() {
     const image = await parseImage(stateDesc.innerText);
@@ -45,7 +48,7 @@ const displayController = (function display() {
       return;
     }
     speed.innerText = weatherData.wind.speed;
-    deg.innerText = weatherData.wind.deg;
+    deg.style.transform = `rotate(${weatherData.wind.deg}deg)`;
     temp.innerText = weatherData.temp;
     feelsLike.innerText = weatherData.feelsLike;
     state.innerText = weatherData.state;
