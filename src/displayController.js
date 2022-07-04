@@ -3,6 +3,7 @@ import { parseWeather, unitHandler } from './parseWeather';
 import windIcon from './assets/wind.svg';
 import tempIcon from './assets/temp.svg';
 import searchIcon from './assets/search.svg';
+import parseImage from './parseImage';
 
 const displayController = (function display() {
   document.querySelector('.temperature>img').src = tempIcon;
@@ -29,6 +30,14 @@ const displayController = (function display() {
     }, 3000);
   }
 
+  const info = document.querySelector('.info');
+  const content = document.getElementById('content');
+  async function updateBackground() {
+    const image = await parseImage(stateDesc.innerText);
+
+    content.style.backgroundImage = `url(${image})`;
+  }
+
   function displayWeather(weatherData) {
     // if theres an error display it
     if (typeof weatherData === 'string') {
@@ -44,6 +53,7 @@ const displayController = (function display() {
     city.innerText = weatherData.name;
     stateDesc.innerText = weatherData.stateDesc;
     humidity.innerText = weatherData.humidity;
+    updateBackground();
   }
 
   const input = document.getElementById('input-city');
