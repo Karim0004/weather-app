@@ -20,9 +20,12 @@
         <img alt="Wind Icon">
         <div class="degree"> <span id="deg">40</span> <br> Direction</div>
       </div>
-      <div class="location">
-        <div id="city">Alexandria</div>
-        <div id="country">EG</div>
+      <div class="middle-info">
+        <div class="location">
+          <div id="city">Alexandria</div>
+          <div id="country">EG</div>
+        </div>
+        <div class="humidity"><span id="humidity">71</span> <br> humidity</div>
       </div>
       <div class="temperature">
         <div class="temp"> <span id="temp">32</span> <br> Temperature </div>
@@ -32,10 +35,12 @@
     </div>
 
     <div class="search-container">
+      <button id="unit"><span>°C</span></button>
       <input type="text" id="input-city" placeholder="City">
       <img id="submit-button">
     </div>
 
   </div>
+  <div id="alert-box"></div>
 </body>
 </html>
