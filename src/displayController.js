@@ -1,8 +1,15 @@
 import parseWeather from './parseWeather';
+import wind from './assets/wind.svg';
+import temp from './assets/temp.svg';
+import searchIcon from './assets/search.svg';
 
 const displayController = (function display() {
+  document.querySelector('.temperature>img').src = temp;
+  document.querySelector('.wind>img').src = wind;
+
   const input = document.getElementById('input-city');
   const submit = document.getElementById('submit-button');
+  submit.src = searchIcon;
   let lastSearch = input.value;
 
   // fires on form submission

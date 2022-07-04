@@ -1,2 +1,2 @@
-import parseWeather from './parseWeather';
 import displayController from './displayController';
+import './style.scss';

@@ -9,9 +9,6 @@ export default async function parseWeather(city) {
   try {
     const data = await fetchWeather(String(city));
 
-    if (data.cod !== 200) return data.message;
-    if (data.weather[0].main === 'Clouds') data.weather[0].main = 'Cloudy';
-
     return {
       name: data.name,
       humidity: data.main.humidity,
@@ -19,6 +16,7 @@ export default async function parseWeather(city) {
       temp: data.main.temp,
       state: data.weather[0].main,
       stateDesc: data.weather[0].description,
+      country: data.sys.country,
       wind: {
         speed: data.wind.speed,
         deg: data.wind.deg,

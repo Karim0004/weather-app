@@ -1,0 +1,130 @@
+$color1: #334155;
+$color2: #64748b;
+$color3: #cbd5e1;
+@import url('https://fonts.googleapis.com/css2?family=Coda&family=Oleo+Script&family=Poppins:wght@100;500;900&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#content {
+  width: 100vw;
+  height: 100vh;
+  color: $color1;
+  font-family:'Poppins', 'Trebuchet MS', 'Lucida Sans Unicode',
+    'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  .state {
+    font-size: 100px;
+    font-weight: bold;
+    font-family: 'Oleo Script', cursive;
+    #state-desc {
+      font-size: 0.2em;
+      font-weight: 100;
+      font-family: 'Coda';
+    }
+  }
+
+  .info {
+    max-width: 95vw;
+    width: clamp(100px, 90%, 650px);
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    padding: 24px 16px;
+    background-color: rgba($color: #9a9a9a, $alpha: 0.1);
+    border-radius: 12px;
+    font-size: clamp(16px, 4vw, 24px);
+    .wind, .temperature {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      color: $color1;
+      line-height: 2em;
+      font-size: 0.7em;
+      background-color: rgba($color: #8f8f8f, $alpha: 0.1);
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 100;
+
+      >img {
+        width: max-content;
+        filter: invert(0.5);
+      }
+      span {
+        font-weight: bold;
+        font-size: 2.5em;
+        color: $color2;
+        font-weight: 500;
+      }
+    }
+
+    .location {
+      font-size: clamp(10px ,5vw ,60px);
+      padding: 6px;
+      #country {
+        font-size: 16px;
+        font-weight: 100;
+      }
+    }
+    
+  }
+
+
+  .search-container {
+    display: flex;
+    gap: 16px;
+    background-color: rgba($color: #8f8f8f, $alpha: 0.1);
+    padding: 16px;
+    border-radius: 12px;
+    align-items: center;
+
+
+    #submit-button {
+      padding: 8px;
+      width: 40px;
+      filter: invert(0.3) brightness(1.4);
+      background-color: $color3;
+      border-radius: 50%;
+      transition: all 0.1s ease-in-out;
+      box-sizing: border-box;
+      border: 1px solid $color3;
+      
+      &:hover {
+        background-color: rgba($color: #818181, $alpha: 0.1);
+        border: 1px solid $color2;
+      }
+
+      &:active {
+        box-shadow: 0 0 12px rgba($color: $color2, $alpha: 0.5);
+        transform: scale(1.05);
+      }
+    }
+
+    #input-city {
+      border: none;
+
+      background-color: rgba($color3, $alpha: 0.2);
+      height: 30px;
+      width: 200px;
+      padding: 6px;
+      border-bottom: 3px solid $color3;
+      color: $color1;
+      text-align: center;
+      font-size: 20px;
+      &::placeholder {
+        font-size: 16px;
+        color: rgba($color2, $alpha: 0.8);
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+      }
+    }
+  }
+}
